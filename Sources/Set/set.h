@@ -7,12 +7,10 @@
 #define SET_SET_H_
 #include "../Node/node.h"
 
-
 int insertElementInSet(T_ptrNode *ptrToSet, int element);
-int removeElementFromSet(T_ptrNode *ptrToSet, int element);
-// int setUnion(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
-// int intersection(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
-// int difference(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
-// int subset(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
+T_ptrNode setUnion(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
+T_ptrNode intersection(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
+T_ptrNode difference(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
+int subset(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
 
 #endif

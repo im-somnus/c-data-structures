@@ -20,5 +20,7 @@ int destroyDataStructure(T_ptrNode *ptrNode);
 int getDataStructureSize(T_ptrNode ptrNode);
 void printDataStructure(T_ptrNode ptrToNode);
 int dataStructureIsEmpty(T_ptrNode ptrToNode);
+int elementExistsInDataStructure(T_ptrNode ptrToNode, int element);
+int removeElementFromDataStructure(T_ptrNode *ptrToNode, int element);
 
-#endif /* NODE_NODE_H_ */
+#endif

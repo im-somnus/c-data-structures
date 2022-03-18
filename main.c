@@ -23,47 +23,88 @@ int main()
 	// Sets
 	printf("Sets: \n");
 	T_ptrNode mySet = create();
-	printDataStructure(mySet);
 	insertElementInSet(&mySet, 87);
 	insertElementInSet(&mySet, 6);
 	insertElementInSet(&mySet, 6);
 
+	printf("\tMy Set:		");
 	printDataStructure(mySet);
 	destroyDataStructure(&mySet);
-
+	insertElementInSet(&mySet, 87);
+	insertElementInSet(&mySet, 6);
 	insertElementInSet(&mySet, 2);
 	insertElementInSet(&mySet, 4);
 
+	printf("\tMy new set: 	");
 	printDataStructure(mySet);
 
 	int isEmpty = dataStructureIsEmpty(mySet);
 
 	if (isEmpty)
 	{
-		printf("My set is empty, like my heart\n");
+		printf("\tMy set is empty, like my heart\n");
 	}
 	else
 	{
-		printf("My set is not empty\n");
+		printf("\tMy set is not empty\n");
 	}
 
 	int setSize = getDataStructureSize(mySet);
-	printf("My set Size: \n   %d elements\n", setSize);
+	printf("\tMy set Size: \n   \t\t%d elements\n", setSize);
 
 	int destroyedSetOk = destroyDataStructure(&mySet);
 
 	if (destroyedSetOk >= 0)
 	{
-		printf("Successfully destroyed the data structure.\n");
+		printf("\tSuccessfully destroyed the data structure.\n");
 	}
 	else if (destroyedSetOk == -1)
 	{
-		printf("!ERROR: couldn't destroy the data structure.\n");
+		printf("\t!ERROR: couldn't destroy the data structure.\n");
 	}
 
 	printDataStructure(mySet);
 
-	printf("\n");
+	T_ptrNode setA = create();
+	insertElementInSet(&setA, 1);
+	insertElementInSet(&setA, 2);
+	insertElementInSet(&setA, 3);
+
+	T_ptrNode setB = create();
+	insertElementInSet(&setB, 1);
+	insertElementInSet(&setB, 2);
+	insertElementInSet(&setB, 5);
+	insertElementInSet(&setB, 4);
+
+	printf("\tSet A:                  	");
+	printDataStructure(setA);
+	printf("\tSet B:                 	 	");
+	printDataStructure(setB);
+
+	T_ptrNode setUnionAB = setUnion(setA, setB);
+	printf("\tSet union AB:           	");
+	printDataStructure(setUnionAB);
+
+	printf("\tSet intersection AB:   		");
+	T_ptrNode setIntersectionAB = intersection(setA, setB);
+	printDataStructure(setIntersectionAB);
+
+	printf("\tSet difference AB:      	");
+	T_ptrNode setDiffAB = difference(setA, setB);
+	printDataStructure(setDiffAB);
+
+	int isSet1ASubsetOf2 = subset(setA, setB);
+
+	if (isSet1ASubsetOf2)
+	{
+		printf("\t\tSet A is a subset of B");
+	}
+	else
+	{
+		printf("\t\tSet A is NOT a subset of B\n");
+	}
+
+
 
 	// OrderedList data structure
 	printf("Ordered Lists: \n");
@@ -76,32 +117,33 @@ int main()
 	insertOrdListElement(&myOrderedList, 651);
 	insertOrdListElement(&myOrderedList, 231);
 
+	printf("\tMy list:     ");
 	printDataStructure(myOrderedList);
-
 	int removedOk = removeOrdListElement(&myOrderedList, 231);
 
 	if (removedOk >= 0)
 	{
-		printf("Successfully removed the element.\n");
+		printf("\tSuccessfully removed the element.\n");
 	}
 	else if (removedOk == -1)
 	{
-		printf("!ERROR: couldn't remove that element.\n");
+		printf("\t!ERROR: couldn't remove that element.\n");
 	}
-
+	printf("\tMy new list: ");
 	printDataStructure(myOrderedList);
 
 	int destroyedStackOk = destroyDataStructure(&myOrderedList);
 
 	if (destroyedStackOk >= 0)
 	{
-		printf("Successfully destroyed the data structure.\n");
+		printf("\tSuccessfully destroyed the data structure.\n");
 	}
 	else if (destroyedStackOk == -1)
 	{
-		printf("!ERROR: couldn't destroy the data structure.\n");
+		printf("\t!ERROR: couldn't destroy the data structure.\n");
 	}
 
+	printf("\tMy destroyed list: ");
 	printDataStructure(myOrderedList);
 	printf("\n");
 
@@ -111,26 +153,26 @@ int main()
 	push(&myStack, 2);
 	push(&myStack, 1);
 	push(&myStack, 2);
-	int tam = getDataStructureSize(myStack);
-	printf("Data structure size:\n   %d elements\n", tam);
 
-	// printStack can also be used for a more custom output.
-	// printStack(myStack);
+	int tam = getDataStructureSize(myStack);
+	printf("\tData structure size:\n   \t\t%d elements\n", tam);
+
+	printf("\tMy stack: ");
 	printDataStructure(myStack);
 
 	int destroyOk = destroyDataStructure(&myStack);
 
 	if (destroyOk >= 0)
 	{
-		printf("Successfully destroyed the data structure.\n");
+		printf("\tSuccessfully destroyed the data structure.\n");
 	}
 	else if (destroyOk == -1)
 	{
-		printf("!ERROR: couldn't destroy the data structure.\n");
+		printf("\t!ERROR: couldn't destroy the data structure.\n");
 	}
 
+	printf("\tMy new stack: ");
 	printDataStructure(myStack);
-	printf("\n");
 
 	exit(1);
 }
