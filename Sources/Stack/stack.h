@@ -7,9 +7,8 @@
 #define HEADERS_STACK_H_
 #include "../Node/node.h"
 
-void push(T_ptrNode *ptrHead, int element);
-void pop(T_ptrNode *ptrHead);
-void peek(T_ptrNode ptrHead);
-void printStack(T_ptrNode ptrHead);
+int push(T_ptrNode *ptrHead, int element);
+int pop(T_ptrNode *ptrHead);
+int peek(T_ptrNode ptrHead);
 
 #endif

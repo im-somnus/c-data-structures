@@ -13,6 +13,7 @@ struct node
     T_ptrNode ptrNext;
 };
 
+struct node* create();
 
 int findDataStructureElementPosition(T_ptrNode ptrToNode, int element);
 int destroyDataStructure(T_ptrNode *ptrNode);

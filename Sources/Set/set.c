@@ -8,7 +8,7 @@
 #include "../Set/set.h"
 
 // Insert element in the array
-	// returns 0 if operation failed
+	// returns 0 if operation fails
 	// returns 1 if operation success
 int insertElementInSet(T_ptrNode *ptrToSet, int element)
 {
@@ -46,4 +46,9 @@ int insertElementInSet(T_ptrNode *ptrToSet, int element)
 
 	return operationResult;
 }
+
+// Removes first occurrence of the element from the set
+	// returns 0 if operation fails
+	// returns 1 if operation success
+//int removeElementFromSet(T_ptrNode *ptrToSet, int element)
 

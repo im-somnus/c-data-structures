@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include "node.h"
 
+struct node* create()
+{
+	return NULL;
+}
 
 int findDataStructureElementPosition(T_ptrNode ptrNode, int element)
 {
@@ -21,6 +25,9 @@ int findDataStructureElementPosition(T_ptrNode ptrNode, int element)
 	return ptrNode != NULL ? position : -1;
 }
 
+// Destroys the entire data structure
+	// returns 0 if operation fails
+	// returns 1 if operation success
 int destroyDataStructure(T_ptrNode *ptrNode)
 {
 	int operationResult = 0;

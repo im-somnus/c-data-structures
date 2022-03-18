@@ -9,12 +9,10 @@
 
 
 int insertElementInSet(T_ptrNode *ptrToSet, int element);
-int removeElement(T_ptrNode *ptrToSet, int element);
+int removeElementFromSet(T_ptrNode *ptrToSet, int element);
 // int setUnion(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
 // int intersection(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
 // int difference(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
 // int subset(T_ptrNode *ptrToSet1, T_ptrNode *ptrToSet2);
-
-
 
 #endif

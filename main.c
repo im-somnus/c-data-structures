@@ -20,10 +20,9 @@
 
 int main()
 {
-
 	// Sets
 	printf("Sets: \n");
-	T_ptrNode mySet = NULL;
+	T_ptrNode mySet = create();
 	printDataStructure(mySet);
 	insertElementInSet(&mySet, 87);
 	insertElementInSet(&mySet, 6);
@@ -49,7 +48,7 @@ int main()
 	}
 
 	int setSize = getDataStructureSize(mySet);
-	printf("My set Size: %d\n", setSize);
+	printf("My set Size: \n   %d elements\n", setSize);
 
 	int destroyedSetOk = destroyDataStructure(&mySet);
 
@@ -68,7 +67,7 @@ int main()
 
 	// OrderedList data structure
 	printf("Ordered Lists: \n");
-	T_ptrNode myOrderedList = NULL;
+	T_ptrNode myOrderedList = create();
 	insertOrdListElement(&myOrderedList, 1);
 	insertOrdListElement(&myOrderedList, 12);
 	insertOrdListElement(&myOrderedList, 0);
@@ -108,7 +107,7 @@ int main()
 
 	// Stack data structure
 	printf("Stack: \n");
-	T_ptrNode myStack = NULL;
+	T_ptrNode myStack = create();
 	push(&myStack, 2);
 	push(&myStack, 1);
 	push(&myStack, 2);

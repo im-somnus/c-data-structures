@@ -7,25 +7,9 @@
 #include <stdlib.h>
 #include "orderedList.h"
 
-//// Searches for an element in the array and returns its position
-//	// returns -1 if not found
-//	// returns element position in the ordered list
-//int searchOrdListElement(T_ptrNode ptrToList, int element)
-//{
-//	int position = 0;
-//
-//	while (ptrToList != NULL && ptrToList->data != element)
-//	{
-//		ptrToList = ptrToList->ptrNext;
-//		position++;
-//	}
-//
-//	return ptrToList != NULL ? position : -1;
-//}
-
-// Insert element in the array
-	// returns 0 if operation failed
-	// returns 1 if operation success
+// Insert an element in its ordered position inside the ordered list
+// returns 0 if operation failed
+// returns 1 if operation success
 int insertOrdListElement(T_ptrNode *ptrToList, int element)
 {
 	int operationResult = 0;
@@ -43,11 +27,12 @@ int insertOrdListElement(T_ptrNode *ptrToList, int element)
 	{
 		if (ptrNewElement->data <= (*ptrToList)->data)
 		{
-			ptrNewElement->ptrNext = *ptrToList;
+			ptrNewElement->ptrNext = (*ptrToList);
 			*ptrToList = ptrNewElement;
 		}
 		else
 		{
+
 			ptrPreviousElement = *ptrToList;
 
 			while ((ptrPreviousElement->ptrNext != NULL)
@@ -65,44 +50,37 @@ int insertOrdListElement(T_ptrNode *ptrToList, int element)
 	return operationResult;
 }
 
-// Deletes the first occurrence  of the element passed as parameter
-	// returns 0 if operation failed
-	// returns 1 if operation success
+// Deletes the first occurrence of the element passed as parameter
+// returns 0 if operation failed
+// returns 1 if operation success
 int removeOrdListElement(T_ptrNode *ptrToList, int element)
 {
 	int operationResult = 0;
 
-	if (*ptrToList != NULL)
+	if (*ptrToList != NULL && (*ptrToList)->data == element)
 	{
-		if ((*ptrToList)->data == element)
+		T_ptrNode ptrTemp = *ptrToList;
+		*ptrToList = (*ptrToList)->ptrNext;
+		free(ptrTemp);
+	}
+	else
+	{
+		T_ptrNode ptrPreviousElement;
+		T_ptrNode ptrCurrent = (*ptrToList);
+
+		while (ptrCurrent != NULL && ptrCurrent->data != element)
 		{
-			T_ptrNode ptrTemp = *ptrToList;
-			*ptrToList = (*ptrToList)->ptrNext;
-			free(ptrTemp);
-		}
-		else
-		{
-			T_ptrNode ptrPreviousElement;
-			T_ptrNode ptrCurrent = (*ptrToList);
-
-			while (ptrCurrent != NULL && ptrCurrent->data != element)
-			{
-				ptrPreviousElement = ptrCurrent;
-				ptrCurrent = ptrCurrent->ptrNext;
-			}
-
-			if (ptrCurrent != NULL)
-			{
-				ptrPreviousElement->ptrNext = ptrCurrent->ptrNext;
-				free(ptrCurrent);
-			}
-
+			ptrPreviousElement = ptrCurrent;
+			ptrCurrent = ptrCurrent->ptrNext;
 		}
 
-		operationResult = 1;
+		if (ptrCurrent != NULL)
+		{
+			ptrPreviousElement->ptrNext = ptrCurrent->ptrNext;
+			free(ptrCurrent);
+		}
 	}
 
+	operationResult = 1;
 	return operationResult;
 }
-
-

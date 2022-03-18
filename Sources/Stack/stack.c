@@ -7,39 +7,43 @@
 #include <stdlib.h>
 #include "stack.h"
 
-void push(T_ptrNode *ptrHead, int element)
+// Inserts an element in the stack
+	// returns 0 if operation fail
+	// returns 1 if operation success
+int push(T_ptrNode *ptrHead, int element)
 {
+	int operationResult = 0;
+
 	T_ptrNode ptrNewElem = (struct node *) malloc(sizeof(struct node));
 
     ptrNewElem->data = element;
     ptrNewElem->ptrNext = *ptrHead;
     *ptrHead = ptrNewElem;
+
+    operationResult = 1;
+    return operationResult;
 }
 
-void pop(T_ptrNode *ptrHead)
+// Removes the last inserted element from the stack
+	// returns 0 if operation fail
+	// returns 1 if operation success
+int pop(T_ptrNode *ptrHead)
 {
-	T_ptrNode ptrTemp = *ptrHead;
-    *ptrHead = (*ptrHead)->ptrNext;
-    free(ptrTemp);
+	int operationResult = 0;
+
+	if (ptrHead != NULL)
+	{
+		T_ptrNode ptrTemp = *ptrHead;
+		*ptrHead = (*ptrHead)->ptrNext;
+		free(ptrTemp);
+	}
+
+    operationResult = 1;
+    return operationResult;
 }
 
-void peek(T_ptrNode ptrHead)
+// Return last inserted element from the start
+int peek(T_ptrNode ptrHead)
 {
-	printf("[%d]", ptrHead->data);
-}
-
-// printStructure can also be used.
-void printStack(T_ptrNode ptrHead)
-{
-    printf("head-> ");
-    while (ptrHead != NULL)
-    {
-        peek(ptrHead);
-        if (ptrHead->ptrNext != NULL)
-        {
-        	printf("->");
-        }
-        ptrHead = ptrHead->ptrNext;
-    }
-    printf("\n");
+	return ptrHead->data;
 }

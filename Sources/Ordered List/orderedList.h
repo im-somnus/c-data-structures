@@ -7,13 +7,7 @@
 #define ORDERED_LIST_ORDEREDLIST_H_
 #include "../Node/node.h"
 
-// commented in case the node search function
-// doesnt work like i want and i have to revert.
-//int searchOrdListElement(T_ptrNode ptrToList, int element);
-
 int insertOrdListElement(T_ptrNode *ptrToList, int element);
 int removeOrdListElement(T_ptrNode *ptrToList, int element);
-
-
 
 #endif
