@@ -26,8 +26,8 @@ int findDataStructureElementPosition(T_ptrNode ptrNode, int element)
 }
 
 // Destroys the entire data structure
-	// returns 0 if operation fails
-	// returns 1 if operation success
+// returns 0 if operation fails
+// returns 1 if operation success
 int destroyDataStructure(T_ptrNode *ptrNode)
 {
 	int operationResult = 0;
@@ -79,30 +79,40 @@ int elementExistsInDataStructure(T_ptrNode ptrToNode, int element)
 	return findDataStructureElementPosition(ptrToNode, element) >= 0 ? 1 : 0;
 }
 
-
 // Removes first occurrence of the element from the set
-// returns 0 if operation fails
-// returns 1 if operation success
+	// returns 0 if operation fails
+	// returns 1 if operation success
 int removeElementFromDataStructure(T_ptrNode *ptrToNode, int element)
 {
 	int operationResult = 0;
+
 	if (elementExistsInDataStructure(*ptrToNode, element))
 	{
-		T_ptrNode ptrPreviousElement = create();
-		T_ptrNode ptrCurrentElement = (*ptrToNode);
-
-		while (ptrToNode != NULL && (*ptrToNode)->data != element)
+		if (*ptrToNode != NULL && (*ptrToNode)->data == element)
 		{
-			ptrPreviousElement = (*ptrToNode);
+			T_ptrNode ptrTemp = *ptrToNode;
 			*ptrToNode = (*ptrToNode)->ptrNext;
+			free(ptrTemp);
+		}
+		else
+		{
+			T_ptrNode ptrPreviousElement;
+			T_ptrNode ptrCurrent = (*ptrToNode);
+
+			while (ptrCurrent != NULL && ptrCurrent->data != element)
+			{
+				ptrPreviousElement = ptrCurrent;
+				ptrCurrent = ptrCurrent->ptrNext;
+			}
+
+			if (ptrCurrent != NULL)
+			{
+				ptrPreviousElement->ptrNext = ptrCurrent->ptrNext;
+				free(ptrCurrent);
+			}
 		}
 
-		if (ptrPreviousElement != NULL)
-		{
-			ptrPreviousElement->ptrNext = ptrCurrentElement->ptrNext;
-			free(ptrCurrentElement);
-			operationResult = 1;
-		}
+		operationResult = 1;
 	}
 
 	return operationResult;

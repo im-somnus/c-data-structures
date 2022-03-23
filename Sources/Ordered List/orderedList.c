@@ -50,37 +50,3 @@ int insertOrdListElement(T_ptrNode *ptrToList, int element)
 	return operationResult;
 }
 
-// Deletes the first occurrence of the element passed as parameter
-// returns 0 if operation failed
-// returns 1 if operation success
-int removeOrdListElement(T_ptrNode *ptrToList, int element)
-{
-	int operationResult = 0;
-
-	if (*ptrToList != NULL && (*ptrToList)->data == element)
-	{
-		T_ptrNode ptrTemp = *ptrToList;
-		*ptrToList = (*ptrToList)->ptrNext;
-		free(ptrTemp);
-	}
-	else
-	{
-		T_ptrNode ptrPreviousElement;
-		T_ptrNode ptrCurrent = (*ptrToList);
-
-		while (ptrCurrent != NULL && ptrCurrent->data != element)
-		{
-			ptrPreviousElement = ptrCurrent;
-			ptrCurrent = ptrCurrent->ptrNext;
-		}
-
-		if (ptrCurrent != NULL)
-		{
-			ptrPreviousElement->ptrNext = ptrCurrent->ptrNext;
-			free(ptrCurrent);
-		}
-	}
-
-	operationResult = 1;
-	return operationResult;
-}

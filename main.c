@@ -11,21 +11,45 @@
  #include "./Sources/Linked List/Doubly Linked List/doublyLinkedList.h"
  #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h"
  #include "./Sources/Priority Queue/priorityQueue.h"
- #include "./Sources/Queue/queue.h"
  #include "./Sources/Search Tree/searchTree.h" */
 
 #include "./Sources/Ordered List/orderedList.h"
 #include "./Sources/Set/set.h"
 #include "./Sources/Stack/stack.h"
+#include "./Sources/Queue/queue.h"
 
 int main()
 {
+	T_ptrNode queue = create();
+	int d = enqueue(&queue, 1);
+	enqueue(&queue, 2);
+	enqueue(&queue, 3);
+	enqueue(&queue, 4);
+	enqueue(&queue, 6);
+	enqueue(&queue, 0);
+	dequeue(&queue);
+
+	if (d)
+	{
+		printf("NICE: \n");
+		printDataStructure(queue);
+	}
+	else
+	{
+		printf("NOT NICE: \n");
+		printDataStructure(queue);
+	}
+
 	// Sets
 	printf("Sets: \n");
 	T_ptrNode mySet = create();
 	insertElementInSet(&mySet, 87);
 	insertElementInSet(&mySet, 6);
 	insertElementInSet(&mySet, 6);
+	insertElementInSet(&mySet, 7);
+	insertElementInSet(&mySet, 3);
+
+	removeElementFromDataStructure(&mySet, 3);
 
 	printf("\tMy Set:		");
 	printDataStructure(mySet);
@@ -76,6 +100,7 @@ int main()
 	insertElementInSet(&setB, 5);
 	insertElementInSet(&setB, 4);
 
+
 	printf("\tSet A:                  	");
 	printDataStructure(setA);
 	printf("\tSet B:                 	 	");
@@ -104,8 +129,6 @@ int main()
 		printf("\t\tSet A is NOT a subset of B\n");
 	}
 
-
-
 	// OrderedList data structure
 	printf("Ordered Lists: \n");
 	T_ptrNode myOrderedList = create();
@@ -119,7 +142,7 @@ int main()
 
 	printf("\tMy list:     ");
 	printDataStructure(myOrderedList);
-	int removedOk = removeOrdListElement(&myOrderedList, 231);
+	int removedOk = removeElementFromDataStructure(&myOrderedList, 231);
 
 	if (removedOk >= 0)
 	{

@@ -36,9 +36,11 @@ int pop(T_ptrNode *ptrHead)
 		T_ptrNode ptrTemp = *ptrHead;
 		*ptrHead = (*ptrHead)->ptrNext;
 		free(ptrTemp);
+
+		operationResult = 1;
 	}
 
-    operationResult = 1;
+
     return operationResult;
 }
 

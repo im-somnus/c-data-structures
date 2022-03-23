@@ -8,6 +8,5 @@
 #include "../Node/node.h"
 
 int insertOrdListElement(T_ptrNode *ptrToList, int element);
-int removeOrdListElement(T_ptrNode *ptrToList, int element);
 
 #endif
