@@ -7,19 +7,41 @@
 #include <stdlib.h>
 
 /* #include "./Sources/Dictionary/dictionary.h"
- #include "./Sources/Heap/heap.h"
- #include "./Sources/Linked List/Doubly Linked List/doublyLinkedList.h"
- #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h"
- #include "./Sources/Priority Queue/priorityQueue.h"
- #include "./Sources/Search Tree/searchTree.h" */
+   #include "./Sources/Heap/heap.h"
+   #include "./Sources/Linked List/Doubly Linked List/doublyLinkedList.h"
+   #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h"
+   #include "./Sources/Search Tree/searchTree.h" */
 
 #include "./Sources/Ordered List/orderedList.h"
 #include "./Sources/Set/set.h"
 #include "./Sources/Stack/stack.h"
 #include "./Sources/Queue/queue.h"
+#include "./Sources/Queue/Priority Queue/priorityQueue.h"
 
 int main()
 {
+	printf("Priority Queues: \n");
+	T_ptrNode pqueue = create();
+
+	insertPriorityQueue(&pqueue, 1);
+	insertPriorityQueue(&pqueue, 2);
+	insertPriorityQueue(&pqueue, 5);
+	insertPriorityQueue(&pqueue, 3);
+	insertPriorityQueue(&pqueue, 4);
+	insertPriorityQueue(&pqueue, 4);
+
+	printf("\tPrinting data structure: \t");
+	printDataStructure(pqueue);
+
+
+	dePQueue(&pqueue);
+	printf("\tDequeing..\n");
+	printf("\tPrinting data structure: \t");
+	printDataStructure(pqueue);
+
+	printf("\n");
+
+	printf("Queues: \n\t");
 	T_ptrNode queue = create();
 	int d = enqueue(&queue, 1);
 	enqueue(&queue, 2);
@@ -29,16 +51,16 @@ int main()
 	enqueue(&queue, 0);
 	dequeue(&queue);
 
+	printf("\tPrinting data structure: ");
 	if (d)
 	{
-		printf("NICE: \n");
 		printDataStructure(queue);
 	}
 	else
 	{
-		printf("NOT NICE: \n");
 		printDataStructure(queue);
 	}
+	printf("\n");
 
 	// Sets
 	printf("Sets: \n");
