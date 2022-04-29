@@ -9,17 +9,38 @@
 /* #include "./Sources/Dictionary/dictionary.h"
    #include "./Sources/Heap/heap.h"
    #include "./Sources/Linked List/Doubly Linked List/doublyLinkedList.h"
-   #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h"
-   #include "./Sources/Search Tree/searchTree.h" */
+   #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h" */
+
 
 #include "./Sources/Ordered List/orderedList.h"
 #include "./Sources/Set/set.h"
 #include "./Sources/Stack/stack.h"
 #include "./Sources/Queue/queue.h"
 #include "./Sources/Queue/Priority Queue/priorityQueue.h"
+#include "./Sources/Trees/tree.h"
+
 
 int main()
 {
+	T_ptrTreeNode n1 = createTreeNode(1);
+	T_ptrTreeNode n2 = createTreeNode(2);
+	T_ptrTreeNode n3 = createTreeNode(3);
+	T_ptrTreeNode n4 = createTreeNode(4);
+	T_ptrTreeNode n5 = createTreeNode(5);
+	T_ptrTreeNode n6 = createTreeNode(6);
+	T_ptrTreeNode n7 = createTreeNode(7);
+
+	n1->childLeft = n2;
+	n1->childRight = n3;
+
+	n2->childLeft = n4;
+	n2->childRight = n5;
+
+	n3->childLeft = n6;
+	n3->childRight = n7;
+
+	printTree(n1);
+
 	printf("Priority Queues: \n");
 	T_ptrNode pqueue = create();
 
@@ -194,7 +215,9 @@ int main()
 
 	// Stack data structure
 	printf("Stack: \n");
+
 	T_ptrNode myStack = create();
+
 	push(&myStack, 2);
 	push(&myStack, 1);
 	push(&myStack, 2);

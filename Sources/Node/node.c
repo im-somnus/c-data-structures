@@ -26,8 +26,8 @@ int findDataStructureElementPosition(T_ptrNode ptrNode, int element)
 }
 
 // Destroys the entire data structure
-// returns 0 if operation fails
-// returns 1 if operation success
+	// returns 0 if operation fails
+	// returns 1 if operation success
 int destroyDataStructure(T_ptrNode *ptrNode)
 {
 	int operationResult = 0;
@@ -40,7 +40,7 @@ int destroyDataStructure(T_ptrNode *ptrNode)
 		*ptrNode = ptrTemp;
 	}
 
-	ptrNode = NULL;
+	*ptrNode = NULL;
 
 	operationResult = 1;
 	return operationResult;
@@ -63,7 +63,7 @@ void printDataStructure(T_ptrNode ptrNode)
 {
 	while (ptrNode != NULL)
 	{
-		printf("[%d]", ptrNode->data);
+		printf("[%d]->", ptrNode->data);
 		ptrNode = ptrNode->ptrNext;
 	}
 	printf("\n");
