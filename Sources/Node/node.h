@@ -13,9 +13,11 @@ struct node
     T_ptrNode ptrNext;
 };
 
-struct node* create();
-
+struct node* init();
+T_ptrNode allocateMemoryForNewNode();
 int findDataStructureElementPosition(T_ptrNode ptrToNode, int element);
+T_ptrNode getPtrNodeFromDataStructureByElementValue(T_ptrNode ptrNode, int element);
+void deallocateNodeFromDataStructure(T_ptrNode *ptrNode);
 int destroyDataStructure(T_ptrNode *ptrNode);
 int getDataStructureSize(T_ptrNode ptrNode);
 void printDataStructure(T_ptrNode ptrToNode);

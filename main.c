@@ -7,10 +7,9 @@
 #include <stdlib.h>
 
 /* #include "./Sources/Dictionary/dictionary.h"
-   #include "./Sources/Heap/heap.h"
-   #include "./Sources/Linked List/Doubly Linked List/doublyLinkedList.h"
-   #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h" */
-
+ #include "./Sources/Heap/heap.h"
+ #include "./Sources/Linked List/Doubly Linked List/doublyLinkedList.h"
+ #include "./Sources/Linked List/Singly Linked List/SinglyLinkedList.h" */
 
 #include "./Sources/Ordered List/orderedList.h"
 #include "./Sources/Set/set.h"
@@ -18,7 +17,6 @@
 #include "./Sources/Queue/queue.h"
 #include "./Sources/Queue/Priority Queue/priorityQueue.h"
 #include "./Sources/Trees/tree.h"
-
 
 int main()
 {
@@ -42,7 +40,7 @@ int main()
 	printTree(n1);
 
 	printf("Priority Queues: \n");
-	T_ptrNode pqueue = create();
+	T_ptrNode pqueue = init();
 
 	insertPriorityQueue(&pqueue, 1);
 	insertPriorityQueue(&pqueue, 2);
@@ -63,7 +61,7 @@ int main()
 	printf("\n");
 
 	printf("Queues: \n\t");
-	T_ptrNode queue = create();
+	T_ptrNode queue = init();
 	int d = enqueue(&queue, 1);
 	enqueue(&queue, 2);
 	enqueue(&queue, 3);
@@ -85,7 +83,7 @@ int main()
 
 	// Sets
 	printf("Sets: \n");
-	T_ptrNode mySet = create();
+	T_ptrNode mySet = init();
 	insertElementInSet(&mySet, 87);
 	insertElementInSet(&mySet, 6);
 	insertElementInSet(&mySet, 6);
@@ -132,12 +130,12 @@ int main()
 
 	printDataStructure(mySet);
 
-	T_ptrNode setA = create();
+	T_ptrNode setA = init();
 	insertElementInSet(&setA, 1);
 	insertElementInSet(&setA, 2);
 	insertElementInSet(&setA, 3);
 
-	T_ptrNode setB = create();
+	T_ptrNode setB = init();
 	insertElementInSet(&setB, 1);
 	insertElementInSet(&setB, 2);
 	insertElementInSet(&setB, 5);
@@ -161,7 +159,7 @@ int main()
 	T_ptrNode setDiffAB = difference(setA, setB);
 	printDataStructure(setDiffAB);
 
-	int isSet1ASubsetOf2 = subset(setA, setB);
+	int isSet1ASubsetOf2 = setAIsSubsetOfSetB(setA, setB);
 
 	if (isSet1ASubsetOf2)
 	{
@@ -174,7 +172,7 @@ int main()
 
 	// OrderedList data structure
 	printf("Ordered Lists: \n");
-	T_ptrNode myOrderedList = create();
+	T_ptrNode myOrderedList = init();
 	insertOrdListElement(&myOrderedList, 1);
 	insertOrdListElement(&myOrderedList, 12);
 	insertOrdListElement(&myOrderedList, 0);
@@ -216,7 +214,7 @@ int main()
 	// Stack data structure
 	printf("Stack: \n");
 
-	T_ptrNode myStack = create();
+	T_ptrNode myStack = init();
 
 	push(&myStack, 2);
 	push(&myStack, 1);

@@ -8,45 +8,48 @@
 #include "orderedList.h"
 
 // Insert an element in its ordered position inside the ordered list
-// returns 0 if operation failed
-// returns 1 if operation success
+// 		returns 0 if operation failed
+// 		returns 1 if operation success
 int insertOrdListElement(T_ptrNode *ptrToList, int element)
 {
 	int operationResult = 0;
+	T_ptrNode ptrNewElement = allocateMemoryForNewNode();
 
-	T_ptrNode ptrPreviousElement;
-	T_ptrNode ptrNewElement = (struct node*) malloc(sizeof(struct node));
-	ptrNewElement->data = element;
+	if (ptrNewElement != NULL)
+	{
+		ptrNewElement->data = element;
 
-	if (*ptrToList == NULL)
-	{
-		ptrNewElement->ptrNext = NULL;
-		*ptrToList = ptrNewElement;
-	}
-	else
-	{
-		if (ptrNewElement->data <= (*ptrToList)->data)
+		if (*ptrToList == NULL)
 		{
-			ptrNewElement->ptrNext = (*ptrToList);
+			ptrNewElement->ptrNext = NULL;
 			*ptrToList = ptrNewElement;
 		}
 		else
 		{
-
-			ptrPreviousElement = *ptrToList;
-
-			while ((ptrPreviousElement->ptrNext != NULL)
-					&& (ptrNewElement->data > ptrPreviousElement->ptrNext->data))
+			if (ptrNewElement->data <= (*ptrToList)->data)
 			{
-				ptrPreviousElement = ptrPreviousElement->ptrNext;
+				ptrNewElement->ptrNext = (*ptrToList);
+				*ptrToList = ptrNewElement;
 			}
+			else
+			{
+				T_ptrNode ptrPreviousElement;
+				ptrPreviousElement = *ptrToList;
 
-			ptrNewElement->ptrNext = ptrPreviousElement->ptrNext;
-			ptrPreviousElement->ptrNext = ptrNewElement;
+				while ((ptrPreviousElement->ptrNext != NULL) &&
+						(ptrNewElement->data > ptrPreviousElement->ptrNext->data))
+				{
+					ptrPreviousElement = ptrPreviousElement->ptrNext;
+				}
+
+				ptrNewElement->ptrNext = ptrPreviousElement->ptrNext;
+				ptrPreviousElement->ptrNext = ptrNewElement;
+			}
 		}
+
+		operationResult = 1;
 	}
 
-	operationResult = 1;
 	return operationResult;
 }
 

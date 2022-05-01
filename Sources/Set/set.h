@@ -8,9 +8,10 @@
 #include "../Node/node.h"
 
 int insertElementInSet(T_ptrNode *ptrToSet, int element);
+void copyToDestinationFromOrigin(T_ptrNode *ptrToSetA, T_ptrNode ptrToSetB);
 T_ptrNode setUnion(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
 T_ptrNode intersection(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
 T_ptrNode difference(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
-int subset(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
+int setAIsSubsetOfSetB(T_ptrNode ptrToSet1, T_ptrNode ptrToSet2);
 
 #endif

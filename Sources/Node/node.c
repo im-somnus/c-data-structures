@@ -7,37 +7,61 @@
 #include <stdlib.h>
 #include "node.h"
 
-struct node* create()
+struct node* init()
 {
 	return NULL;
+}
+
+T_ptrNode allocateMemoryForNewNode()
+{
+	T_ptrNode allocateNodeInMemory = init();
+	allocateNodeInMemory = (struct node*) malloc(sizeof(struct node));
+
+	if (allocateNodeInMemory == NULL)
+	{
+		printf("ERROR while allocating memory for the Node.\n");
+	}
+
+	return allocateNodeInMemory;
 }
 
 int findDataStructureElementPosition(T_ptrNode ptrNode, int element)
 {
 	int position = 0;
 
-	while (ptrNode != NULL && ptrNode->data != element)
+	if (ptrNode != NULL)
 	{
-		ptrNode = ptrNode->ptrNext;
-		position++;
+		while (ptrNode != NULL && ptrNode->data != element)
+		{
+			ptrNode = ptrNode->ptrNext;
+			position++;
+		}
 	}
 
 	return ptrNode != NULL ? position : -1;
 }
 
-// Destroys the entire data structure
-	// returns 0 if operation fails
-	// returns 1 if operation success
-int destroyDataStructure(T_ptrNode *ptrNode)
+void deallocateNodeFromDataStructure(T_ptrNode *ptrNode)
 {
-	int operationResult = 0;
-	T_ptrNode ptrTemp;
-
-	while (*ptrNode != NULL)
+	if (*ptrNode != NULL)
 	{
+		T_ptrNode ptrTemp;
 		ptrTemp = (*ptrNode)->ptrNext;
 		free(*ptrNode);
 		*ptrNode = ptrTemp;
+	}
+}
+
+// Destroys the entire data structure
+// 		returns 0 if operation fails
+// 		returns 1 if operation success
+int destroyDataStructure(T_ptrNode *ptrNode)
+{
+	int operationResult = 0;
+
+	while (*ptrNode != NULL)
+	{
+		deallocateNodeFromDataStructure(&(*ptrNode));
 	}
 
 	*ptrNode = NULL;
@@ -80,24 +104,22 @@ int elementExistsInDataStructure(T_ptrNode ptrToNode, int element)
 }
 
 // Removes first occurrence of the element from the set
-	// returns 0 if operation fails
-	// returns 1 if operation success
-int removeElementFromDataStructure(T_ptrNode *ptrToNode, int element)
+// 		returns 0 if operation fails
+// 		returns 1 if operation success
+int removeElementFromDataStructure(T_ptrNode *ptrNode, int element)
 {
 	int operationResult = 0;
 
-	if (elementExistsInDataStructure(*ptrToNode, element))
+	if (*ptrNode != NULL && elementExistsInDataStructure(*ptrNode, element))
 	{
-		if (*ptrToNode != NULL && (*ptrToNode)->data == element)
+		if (*ptrNode != NULL && (*ptrNode)->data == element)
 		{
-			T_ptrNode ptrTemp = *ptrToNode;
-			*ptrToNode = (*ptrToNode)->ptrNext;
-			free(ptrTemp);
+			deallocateNodeFromDataStructure(&(*ptrNode));
 		}
 		else
 		{
 			T_ptrNode ptrPreviousElement;
-			T_ptrNode ptrCurrent = (*ptrToNode);
+			T_ptrNode ptrCurrent = (*ptrNode);
 
 			while (ptrCurrent != NULL && ptrCurrent->data != element)
 			{
@@ -111,10 +133,7 @@ int removeElementFromDataStructure(T_ptrNode *ptrToNode, int element)
 				free(ptrCurrent);
 			}
 		}
-
 		operationResult = 1;
 	}
-
 	return operationResult;
 }
-

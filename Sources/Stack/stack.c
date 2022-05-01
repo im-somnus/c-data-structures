@@ -8,30 +8,33 @@
 #include "stack.h"
 
 // Inserts an element in the stack
-	// returns 0 if operation fail
-	// returns 1 if operation success
+// 		returns 0 if operation fail
+// 		returns 1 if operation success
 int push(T_ptrNode *ptrHead, int element)
 {
 	int operationResult = 0;
+	T_ptrNode ptrNewElem = allocateMemoryForNewNode();
 
-	T_ptrNode ptrNewElem = (struct node *) malloc(sizeof(struct node));
+	if (ptrNewElem != NULL)
+	{
+		ptrNewElem->data = element;
+		ptrNewElem->ptrNext = *ptrHead;
+		*ptrHead = ptrNewElem;
 
-    ptrNewElem->data = element;
-    ptrNewElem->ptrNext = *ptrHead;
-    *ptrHead = ptrNewElem;
+		operationResult = 1;
+	}
 
-    operationResult = 1;
-    return operationResult;
+	return operationResult;
 }
 
 // Removes the last inserted element from the stack
-	// returns 0 if operation fail
-	// returns 1 if operation success
+// 		returns 0 if operation fail
+//		returns 1 if operation success
 int pop(T_ptrNode *ptrHead)
 {
 	int operationResult = 0;
 
-	if (ptrHead != NULL)
+	if (*ptrHead != NULL)
 	{
 		T_ptrNode ptrTemp = *ptrHead;
 		*ptrHead = (*ptrHead)->ptrNext;
@@ -40,12 +43,18 @@ int pop(T_ptrNode *ptrHead)
 		operationResult = 1;
 	}
 
-
-    return operationResult;
+	return operationResult;
 }
 
 // Return last inserted element from the start
+// If stack is empty:
+// 		prints an error message and returns -1
 int peek(T_ptrNode ptrHead)
 {
-	return ptrHead->data;
+	if (ptrHead == NULL)
+	{
+		printf("ERROR: empty data stack ");
+	}
+
+	return ptrHead != NULL ? ptrHead->data : -1;
 }

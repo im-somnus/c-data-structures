@@ -8,46 +8,48 @@
 #include "queue.h"
 
 // Enqueues an element in the queue
-	// returns 0 if operation fail
-	// returns 1 if operation success
+// 		returns 0 if operation fail
+// 		returns 1 if operation success
 int enqueue(T_ptrNode *ptrToQueue, int element)
 {
 	int operationResult = 0;
+	T_ptrNode ptrNewElement = allocateMemoryForNewNode();
 
-	T_ptrNode ptrPreviousElement;
-	T_ptrNode ptrNewElement = (struct node*) malloc(sizeof(struct node));
-	ptrNewElement->data = element;
-
-	if (*ptrToQueue == NULL)
+	if (ptrNewElement != NULL)
 	{
-		*ptrToQueue = ptrNewElement;
-		ptrNewElement->ptrNext = NULL;
-	}
-	else
-	{
-		ptrPreviousElement = *ptrToQueue;
+		ptrNewElement->data = element;
 
-		while (ptrPreviousElement->ptrNext != NULL)
+		if (*ptrToQueue == NULL)
 		{
-			ptrPreviousElement = ptrPreviousElement->ptrNext;
+			*ptrToQueue = ptrNewElement;
+			ptrNewElement->ptrNext = NULL;
 		}
+		else
+		{
+			T_ptrNode ptrPreviousElement = *ptrToQueue;
 
-		ptrNewElement->ptrNext = ptrPreviousElement->ptrNext;
-		ptrPreviousElement->ptrNext = ptrNewElement;
+			while (ptrPreviousElement->ptrNext != NULL)
+			{
+				ptrPreviousElement = ptrPreviousElement->ptrNext;
+			}
+
+			ptrNewElement->ptrNext = ptrPreviousElement->ptrNext;
+			ptrPreviousElement->ptrNext = ptrNewElement;
+		}
+		operationResult = 1;
 	}
 
-	operationResult = 1;
 	return operationResult;
 }
 
 // Dequeues an element in the queue
-	// returns 0 if operation fail
-	// returns 1 if operation success
+// 		returns 0 if operation fail
+// 		returns 1 if operation success
 int dequeue(T_ptrNode *ptrToQueue)
 {
 	int operationResult = 0;
 
-	if (ptrToQueue != NULL)
+	if (*ptrToQueue != NULL)
 	{
 		T_ptrNode ptrFirst = (*ptrToQueue);
 		*ptrToQueue = (*ptrToQueue)->ptrNext;
@@ -56,7 +58,5 @@ int dequeue(T_ptrNode *ptrToQueue)
 		operationResult = 1;
 	}
 
-
-    return operationResult;
+	return operationResult;
 }
-
